@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { FetchLeaderboard } from "../../hooks/useFetchLeaderboard";
+import { useNavigate } from "react-router-dom";
+import { generateToken } from "../../helpers/GenerateToken";
 
 
 function Home() {
+    const navigate = useNavigate()
 
     const { leaderboard, getLeaderboard } = FetchLeaderboard()
 
@@ -20,20 +23,25 @@ function Home() {
         return leaderboardEntries
     }
 
+    function startGame() {
+        let token = generateToken()
+        sessionStorage.setItem("token", token);
+        navigate("/game")
+    }
+
     useEffect(() => {
+        sessionStorage.clear();
         getLeaderboard();
     }, []);
 
     return (
-        <section className="home-page">
+        <div style={{ width: "30vw" }}>
             <h1 style={{ textAlign: "left", marginBottom: "15px" }}>Top Scores</h1>
             <div className="leaderboard">
-                {
-                    printLeaderboard()
-                }
+                {printLeaderboard()}
             </div>
-            <button className="play-button">Play</button>
-        </section>
+            <button className="play-button" onClick={startGame} >Play</button>
+        </div>
     );
 }
 
