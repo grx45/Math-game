@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, ButtonGroup, Text } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { generateToken } from "../helpers/GenerateToken";
 import { useSelector } from "react-redux";
