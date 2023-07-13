@@ -35,8 +35,8 @@ function Home() {
     }, []);
 
     return (
-        <div style={{ width: "30vw" }}>
-            <h1 style={{ textAlign: "left", marginBottom: "15px" }}>Top Scores</h1>
+        <div style={{ width: "40vw" }}>
+            <h1 className="home-title">Top Scores</h1>
             <div className="leaderboard">
                 {printLeaderboard()}
             </div>
