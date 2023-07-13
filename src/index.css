@@ -16,7 +16,7 @@ code {
 .App{
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 60vw;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ code {
 
 .container{
   display: flex;
-  width: 40vw;
+  width: 50vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;

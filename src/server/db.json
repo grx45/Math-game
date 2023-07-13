@@ -1,34 +1,29 @@
 {
   "leaderboard": [
     {
-      "id": 1,
-      "score": 10,
-      "token": "token1"
-    },
-    {
-      "id": 2,
-      "score": 9,
-      "token": "token2"
-    },
-    {
-      "id": 3,
-      "score": 8,
-      "token": "token3"
-    },
-    {
-      "id": 4,
       "score": 5,
-      "token": "token4"
+      "token": "08:12:10.888Z",
+      "id": 1
     },
     {
       "score": 1,
-      "token": "lmao",
+      "token": "07:52:03.619Z",
+      "id": 2
+    },
+    {
+      "score": 3,
+      "token": "08:27:12.779Z",
+      "id": 3
+    },
+    {
+      "score": 4,
+      "token": "08:26:52.539Z",
+      "id": 4
+    },
+    {
+      "score": 2,
+      "token": "08:04:41.843Z",
       "id": 5
-    },
-    {
-      "score": 1,
-      "token": "06:16:58.471Z",
-      "id": 6
     }
   ]
 }

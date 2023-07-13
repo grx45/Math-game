@@ -1,7 +1,9 @@
 import axios from "axios";
 import { API_URL } from "../helpers/URL";
+import { FetchLeaderboard } from "./useFetchLeaderboard";
 
 export const useUpdateLeaderboard = () => {
+  const { getLeaderboard } = FetchLeaderboard();
   const updateLeaderBoard = async (token, score, leaderboard) => {
     try {
       if (leaderboard.length < 5) {
@@ -13,6 +15,7 @@ export const useUpdateLeaderboard = () => {
           },
           {}
         );
+        await getLeaderboard();
         return;
       }
       const foundEntry = leaderboard.find((entry) => entry.score < score);
@@ -27,6 +30,7 @@ export const useUpdateLeaderboard = () => {
           },
           {}
         );
+        await getLeaderboard();
         return;
       } else {
         return;

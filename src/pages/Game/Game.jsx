@@ -29,10 +29,17 @@ function Game() {
         setNum2(generateNumber())
     }
 
-    function handleSubmit() {
-        if (progress === 10) {
+    async function handleSubmit() {
+        if (progress === 5) {
+
+            const answer = parseInt(submission)
+
+            if (answer === num1 + num2) {
+                score++
+                setScore(score)
+            }
+            await updateLeaderBoard(token, score, leaderboard)
             onOpen();
-            updateLeaderBoard(token, score, leaderboard)
             return
         }
 
@@ -71,7 +78,7 @@ function Game() {
                 <button onClick={handleSubmit} className="submit-button"><p style={{ fontSize: "25px", padding: 0, marginBlockStart: 0, marginBlockEnd: 0 }}>Submit</p></button>
             </div>
             <h2 className="score-track">Score: {score}</h2>
-            <Scoremodal isOpen={isOpen} onClose={onClose} />
+            <Scoremodal isOpen={isOpen} onClose={onClose} score={score} token={token} setProgress={setProgress} setScore={setScore} setSubmission={setSubmission} />
 
         </>
     );

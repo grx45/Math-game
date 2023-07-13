@@ -3,8 +3,6 @@ import { FetchLeaderboard } from "../../hooks/useFetchLeaderboard";
 import { useNavigate } from "react-router-dom";
 import { generateToken } from "../../helpers/GenerateToken";
 
-
-
 function Home() {
     const navigate = useNavigate()
 
