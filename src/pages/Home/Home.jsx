@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { generateToken } from "../../helpers/GenerateToken";
 
 
+
 function Home() {
     const navigate = useNavigate()
 
@@ -35,7 +36,7 @@ function Home() {
     }, []);
 
     return (
-        <div style={{ width: "40vw" }}>
+        <div style={{ width: "30vw" }}>
             <h1 className="home-title">Top Scores</h1>
             <div className="leaderboard">
                 {printLeaderboard()}

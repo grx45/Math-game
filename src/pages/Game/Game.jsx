@@ -1,13 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../../helpers/URL";
-import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, ButtonGroup } from "@chakra-ui/react";
+import { useUpdateLeaderboard } from "../../hooks/useUpdateLeaderboard";
+import { useSelector } from "react-redux";
+import { useDisclosure } from "@chakra-ui/react";
+import Scoremodal from "../../components/Scoremodal";
 
 function Game() {
     const token = sessionStorage.getItem("token");
-    const leaderboard = useSelector((state) => state.leaderboardReducer.data)
+    const leaderboard = useSelector((state) => state.leaderboardReducer.data);
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -16,6 +16,8 @@ function Game() {
     const [num2, setNum2] = useState(generateNumber())
     const [submission, setSubmission] = useState('')
     let [score, setScore] = useState(0)
+
+    const { updateLeaderBoard } = useUpdateLeaderboard()
 
     function generateNumber() {
         let number = Math.floor(Math.random() * 20)
@@ -28,12 +30,12 @@ function Game() {
     }
 
     function handleSubmit() {
-        if (progress == 2) {
-
+        if (progress === 10) {
             onOpen();
-            updateLeaderBoard()
+            updateLeaderBoard(token, score, leaderboard)
             return
         }
+
         const answer = parseInt(submission)
 
         if (answer === num1 + num2) {
@@ -52,28 +54,11 @@ function Game() {
         generateQuestion()
     }
 
-    const updateLeaderBoard = async () => {
-        try {
-            if (leaderboard.length < 5) {
-                await axios.post(
-                    `${API_URL}leaderboard`, {
-                    score: score,
-                    token: token
-                }, {}
-                )
-            }
-
-        } catch (error) {
-            console.log("error update leaderboard: ", error)
-        }
-    }
-
     useEffect(() => {
         if (!token) {
             navigate('/')
         }
     }, [])
-
 
     return (
         <>
@@ -86,24 +71,7 @@ function Game() {
                 <button onClick={handleSubmit} className="submit-button"><p style={{ fontSize: "25px", padding: 0, marginBlockStart: 0, marginBlockEnd: 0 }}>Submit</p></button>
             </div>
             <h2 className="score-track">Score: {score}</h2>
-
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
-
-                    <ModalBody>
-
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button variant='ghost'>Secondary Action</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+            <Scoremodal isOpen={isOpen} onClose={onClose} />
 
         </>
     );
